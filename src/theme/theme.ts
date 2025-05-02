@@ -3,6 +3,7 @@ import {
   buttonCustomizations,
   dialogCustomizations,
   inputCustomizations,
+  listCustomizations,
   menuCustomizations,
   miscCustomizations,
   typographyCustomizations,
@@ -22,6 +23,7 @@ export const theme = createTheme({
     ...miscCustomizations,
     ...dialogCustomizations,
     ...typographyCustomizations,
+    ...listCustomizations,
   },
   typography: {
     fontFamily: [
