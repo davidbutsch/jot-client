@@ -1,5 +1,6 @@
 import { useRoutes } from "react-router-dom";
 
+import { homeRoutes } from "@/modules/home";
 import { jotsRoutes } from "@/modules/jots/routes";
 import { CssBaseline } from "@mui/material";
 import { Outlet, RouteObject } from "react-router-dom";
@@ -13,6 +14,9 @@ export const routes: RouteObject[] = [
       </>
     ),
     children: [
+      {
+        children: homeRoutes,
+      },
       {
         children: jotsRoutes,
       },

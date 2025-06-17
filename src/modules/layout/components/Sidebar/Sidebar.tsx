@@ -1,4 +1,5 @@
 import { Drawer } from "@mui/material";
+import { AccountControls } from "./AccountControls";
 import { Actions } from "./Actions";
 import { Links } from "./Links";
 import { Logo } from "./Logo";
@@ -25,6 +26,7 @@ export const Sidebar = () => {
       <Logo />
       <Actions />
       <Links />
+      <AccountControls />
     </Drawer>
   );
 };

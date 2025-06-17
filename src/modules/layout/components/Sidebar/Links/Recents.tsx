@@ -31,7 +31,9 @@ export const Recents = () => {
     <>
       <ListItemButton onClick={handleToggleOpen}>
         <ListItemIcon>
-          <Icon className="material-symbols-outlined">schedule</Icon>
+          <Icon className="material-symbols-outlined" color="primary">
+            schedule
+          </Icon>
         </ListItemIcon>
         <ListItemText primary="Recents" />
         {open ? (

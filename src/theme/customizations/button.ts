@@ -12,6 +12,7 @@ export const buttonCustomizations: Components<Theme> = {
       root: {
         flex: "none", // fix text wrapping issue
         fontWeight: 600, // all buttons have bold text
+        textTransform: "none",
 
         variants: [
           // CONTAINED VARIANT
@@ -26,13 +27,7 @@ export const buttonCustomizations: Components<Theme> = {
           // TEXT VARIANT
           {
             props: { variant: "text" },
-            style: {
-              "&:hover": {
-                background: "transparent",
-                textDecoration: "underline",
-                textDecorationThickness: "2px",
-              },
-            },
+            style: {},
           },
           // LARGE SIZE
           {

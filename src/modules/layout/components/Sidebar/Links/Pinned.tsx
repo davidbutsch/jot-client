@@ -14,7 +14,7 @@ import { useState } from "react";
 
 export const Pinned = () => {
   // STATE
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   // API
   const { data: pinned, isLoading } = useQuery({
@@ -31,7 +31,9 @@ export const Pinned = () => {
     <>
       <ListItemButton onClick={handleToggleOpen}>
         <ListItemIcon>
-          <Icon className="material-symbols-outlined">keep</Icon>
+          <Icon className="material-symbols-outlined" color="primary">
+            keep
+          </Icon>
         </ListItemIcon>
         <ListItemText primary="Pinned" />
         {open ? (

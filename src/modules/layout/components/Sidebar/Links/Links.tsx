@@ -1,24 +1,16 @@
-import {
-  Icon,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import { List } from "@mui/material";
+import { Home } from "./Home";
 import { Pinned } from "./Pinned";
 import { Recents } from "./Recents";
+import { Shared } from "./Shared";
 
 export const Links = () => {
   return (
     <List component="nav">
-      <ListItemButton>
-        <ListItemIcon>
-          <Icon className="material-symbols-outlined">group</Icon>
-        </ListItemIcon>
-        <ListItemText primary="Shared" />
-      </ListItemButton>
-      <Recents />
+      <Home />
+      <Shared />
       <Pinned />
+      <Recents />
     </List>
   );
 };
