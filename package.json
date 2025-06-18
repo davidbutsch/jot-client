@@ -10,16 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@editorjs/editorjs": "^2.30.8",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.0.2",
     "@tanstack/react-query": "^5.75.0",
+    "@tiptap/extension-collaboration": "^2.14.0",
+    "@tiptap/extension-collaboration-cursor": "^2.14.0",
+    "@tiptap/pm": "^2.14.0",
+    "@tiptap/react": "^2.14.0",
+    "@tiptap/starter-kit": "^2.14.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.2",
     "use-local-storage": "^3.0.0",
     "vite-plugin-mkcert": "^1.17.8",
+    "y-webrtc": "^10.3.0",
     "zod": "^3.24.3"
   },
   "devDependencies": {
