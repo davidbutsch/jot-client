@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import useLocalStorage from "use-local-storage";
+import { ColorPicker } from "./ColorPicker";
 
 export type AccountControlsDialogProps = {
   open: boolean;
@@ -38,7 +39,7 @@ export const AccountControlsDialog = (props: AccountControlsDialogProps) => {
   };
 
   return (
-    <Dialog open={open}>
+    <Dialog open={open} onClose={handleCancel}>
       <DialogTitle>Account Controls</DialogTitle>
       <DialogContent>
         <Stack gap={2}>
@@ -63,6 +64,7 @@ export const AccountControlsDialog = (props: AccountControlsDialogProps) => {
               variant="outlined"
             />
           </FormControl>
+          <ColorPicker />
         </Stack>
       </DialogContent>
       <DialogActions>

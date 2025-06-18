@@ -1,3 +1,4 @@
+import { ColorPicker } from "@/modules/layout/components/Sidebar/AccountControls";
 import {
   Button,
   Dialog,
@@ -21,7 +22,7 @@ export type OnboardingDialogProps = {
 export const OnboardingDialog = (props: OnboardingDialogProps) => {
   const { open, setOpen } = props;
 
-  const [_localName, setLocalName] = useLocalStorage("name", "a");
+  const [_localName, setLocalName] = useLocalStorage("name", "");
   const [name, setName] = useState("");
 
   const handleContinue = () => {
@@ -60,6 +61,7 @@ export const OnboardingDialog = (props: OnboardingDialogProps) => {
               variant="outlined"
             />
           </FormControl>
+          <ColorPicker />
         </Stack>
       </DialogContent>
       <DialogActions>
