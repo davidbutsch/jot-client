@@ -34,6 +34,7 @@ export const NewJotDialog = (props: NewJotDialogProps) => {
   const createJotMutation = useMutation({
     mutationFn: createJot,
   });
+  const isLoading = createJotMutation.isPending;
 
   // State changes
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,7 +88,11 @@ export const NewJotDialog = (props: NewJotDialogProps) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleDialogClose}>Cancel</Button>
-        <Button variant="contained" onClick={handleCreateJot}>
+        <Button
+          variant="contained"
+          onClick={handleCreateJot}
+          loading={isLoading}
+        >
           Create
         </Button>
       </DialogActions>
