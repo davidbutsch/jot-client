@@ -1,18 +1,7 @@
-import { ColorPicker } from "@/modules/layout/components/Sidebar/AccountControls";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  FormControl,
-  FormLabel,
-  Stack,
-  TextField,
-} from "@mui/material";
+import { Dialog } from "@mui/material";
 import { useState } from "react";
-import useLocalStorage from "use-local-storage";
+import { AccountStep } from "./AccountStep";
+import { WelcomeStep } from "./WelcomeStep";
 
 export type OnboardingDialogProps = {
   open: boolean;
@@ -22,53 +11,18 @@ export type OnboardingDialogProps = {
 export const OnboardingDialog = (props: OnboardingDialogProps) => {
   const { open, setOpen } = props;
 
-  const [_localName, setLocalName] = useLocalStorage("name", "");
-  const [name, setName] = useState("");
+  const [step, setStep] = useState(0);
 
-  const handleContinue = () => {
-    setLocalName(name);
-    setOpen(false);
-  };
-
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setName(value);
+  // Iterate steps and close dialog on last step
+  const nextStep = () => {
+    if (step == 1) setOpen(false);
+    else setStep((prev) => prev + 1);
   };
 
   return (
     <Dialog open={open}>
-      <DialogTitle>Welcome to Jot</DialogTitle>
-      <DialogContent>
-        <Stack gap={2}>
-          <DialogContentText>
-            Please enter a display name that others can easily identify you by.
-          </DialogContentText>
-          <FormControl>
-            <FormLabel htmlFor="name" required>
-              Name
-            </FormLabel>
-            <TextField
-              value={name}
-              onChange={handleNameChange}
-              id="name"
-              type="text"
-              name="name"
-              placeholder="John Doe"
-              autoComplete="name"
-              required
-              fullWidth
-              autoFocus
-              variant="outlined"
-            />
-          </FormControl>
-          <ColorPicker />
-        </Stack>
-      </DialogContent>
-      <DialogActions>
-        <Button variant="contained" onClick={handleContinue}>
-          Continue
-        </Button>
-      </DialogActions>
+      {step == 0 && <WelcomeStep nextStep={nextStep} />}
+      {step == 1 && <AccountStep nextStep={nextStep} />}
     </Dialog>
   );
 };
