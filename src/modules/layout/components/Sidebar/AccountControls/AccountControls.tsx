@@ -1,5 +1,6 @@
 import { Box, styled } from "@mui/material";
 import { useState } from "react";
+import useLocalStorage from "use-local-storage";
 import { AccountControlsButton } from "./AccountControlsButton";
 import { AccountControlsDialog } from "./AccountControlsDialog";
 
@@ -12,8 +13,11 @@ const AccountControlsContainer = styled(Box)({
 
 export const AccountControls = () => {
   const [open, setOpen] = useState(false);
+  const [name] = useLocalStorage("name", "");
 
   const handleClick = () => setOpen(true);
+
+  if (!name) return;
 
   return (
     <AccountControlsContainer>
