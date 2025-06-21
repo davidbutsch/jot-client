@@ -1,3 +1,4 @@
+import { JOT_LOGO_URL } from "@/common";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +10,7 @@ export const Logo = () => {
   return (
     <Box
       component="img"
-      src="jot.svg"
+      src={JOT_LOGO_URL}
       onClick={handleClick}
       sx={{
         pl: 2, // aligns logo image with action and navigation buttons
