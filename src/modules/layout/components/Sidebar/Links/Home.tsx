@@ -10,7 +10,7 @@ export const Home = () => {
     <ListItemButton selected>
       <ListItemIcon>
         <Icon className="material-symbols-outlined" color="primary">
-          home
+          note_stack
         </Icon>
       </ListItemIcon>
       <ListItemText primary="Home" />
