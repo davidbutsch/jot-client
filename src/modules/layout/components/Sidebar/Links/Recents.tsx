@@ -1,6 +1,5 @@
-import { getRecents } from "@/modules/layout";
+import { useLocalJots } from "@/modules/jots/hooks";
 import {
-  CircularProgress,
   Collapse,
   Icon,
   List,
@@ -9,18 +8,16 @@ import {
   ListItemText,
   Slide,
 } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 export const Recents = () => {
   // STATE
-  const [open, setOpen] = useState(true);
+  const {
+    localJots: { recents },
+  } = useLocalJots();
 
-  // API
-  const { data: recents, isLoading } = useQuery({
-    queryKey: ["recents"],
-    queryFn: getRecents,
-  });
+  // Only open recents by default if there are recent jots
+  const [open, setOpen] = useState(recents.length > 0);
 
   // METHODS
   const handleToggleOpen = () => {
@@ -37,21 +34,17 @@ export const Recents = () => {
         </ListItemIcon>
         <ListItemText primary="Recents" />
         {open ? (
-          isLoading ? (
-            <CircularProgress size={24} />
-          ) : (
-            <Icon className="material-symbols-outlined">arrow_drop_up</Icon>
-          )
+          <Icon className="material-symbols-outlined">arrow_drop_up</Icon>
         ) : (
           <Icon className="material-symbols-outlined">arrow_drop_down</Icon>
         )}
       </ListItemButton>
-      <Collapse in={open && !isLoading} timeout="auto" unmountOnExit>
+      <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" dense>
-          {recents?.map((recent, i) => (
+          {recents.map((jot, i) => (
             <Slide in={open} direction="right" timeout={(i + 1) * 100}>
               <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary={recent.name} />
+                <ListItemText primary={jot.title} />
               </ListItemButton>
             </Slide>
           ))}

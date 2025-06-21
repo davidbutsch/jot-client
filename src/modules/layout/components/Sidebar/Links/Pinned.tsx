@@ -1,6 +1,5 @@
-import { getPinned } from "@/modules/layout";
+import { useLocalJots } from "@/modules/jots/hooks";
 import {
-  CircularProgress,
   Collapse,
   Icon,
   List,
@@ -9,18 +8,16 @@ import {
   ListItemText,
   Slide,
 } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 export const Pinned = () => {
   // STATE
-  const [open, setOpen] = useState(true);
+  const {
+    localJots: { pinned },
+  } = useLocalJots();
 
-  // API
-  const { data: pinned, isLoading } = useQuery({
-    queryKey: ["pinned"],
-    queryFn: getPinned,
-  });
+  // Only open pinned by default if there are pinned jots
+  const [open, setOpen] = useState(pinned.length > 0);
 
   // METHODS
   const handleToggleOpen = () => {
@@ -37,21 +34,17 @@ export const Pinned = () => {
         </ListItemIcon>
         <ListItemText primary="Pinned" />
         {open ? (
-          isLoading ? (
-            <CircularProgress size={24} />
-          ) : (
-            <Icon className="material-symbols-outlined">arrow_drop_up</Icon>
-          )
+          <Icon className="material-symbols-outlined">arrow_drop_up</Icon>
         ) : (
           <Icon className="material-symbols-outlined">arrow_drop_down</Icon>
         )}
       </ListItemButton>
-      <Collapse in={open && !isLoading} timeout="auto" unmountOnExit>
+      <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" dense>
-          {pinned?.map((pin, i) => (
+          {pinned.map((jot, i) => (
             <Slide in={open} direction="right" timeout={(i + 1) * 100}>
               <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary={pin.name} />
+                <ListItemText primary={jot.title} />
               </ListItemButton>
             </Slide>
           ))}

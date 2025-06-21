@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { Sidebar } from "./Sidebar/Sidebar";
+import { Sidebar } from "./Sidebar";
 
 type AppLayoutProps = {
   children: React.ReactNode;

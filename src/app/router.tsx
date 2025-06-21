@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom";
 
 import { homeRoutes } from "@/modules/home";
-import { jotsRoutes } from "@/modules/jots/routes";
+import { jotsRoutes } from "@/modules/jots";
 import { CssBaseline } from "@mui/material";
 import { Outlet, RouteObject } from "react-router-dom";
 
