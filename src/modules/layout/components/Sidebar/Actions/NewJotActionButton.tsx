@@ -15,9 +15,7 @@ export const NewJotActionButton = () => {
         <ListItemIcon>
           <Icon className="material-symbols-outlined">add</Icon>
         </ListItemIcon>
-        <ListItemText sx={{ "*": { fontWeight: "bold !important" } }}>
-          New Jot
-        </ListItemText>
+        <ListItemText>New Jot</ListItemText>
       </ActionButton>
     </>
   );
