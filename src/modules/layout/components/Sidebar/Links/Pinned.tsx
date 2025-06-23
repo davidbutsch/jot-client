@@ -1,4 +1,4 @@
-import { useLocalJots } from "@/modules/jots/hooks";
+import { useSavedJotIds } from "@/modules/jots/hooks";
 import {
   Collapse,
   Icon,
@@ -9,12 +9,13 @@ import {
   Slide,
 } from "@mui/material";
 import { useState } from "react";
+import { JotListItemButton } from "./JotListItemButton";
 
 export const Pinned = () => {
   // STATE
   const {
-    localJots: { pinned },
-  } = useLocalJots();
+    savedJotIds: { pinned },
+  } = useSavedJotIds();
 
   // Only open pinned by default if there are pinned jots
   const [open, setOpen] = useState(pinned.length > 0);
@@ -41,11 +42,9 @@ export const Pinned = () => {
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" dense>
-          {pinned.map((jot, i) => (
+          {pinned.map((pinnedJotId, i) => (
             <Slide in={open} direction="right" timeout={(i + 1) * 100}>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary={jot.title} />
-              </ListItemButton>
+              <JotListItemButton jotId={pinnedJotId} />
             </Slide>
           ))}
         </List>

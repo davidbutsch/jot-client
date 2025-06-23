@@ -3,7 +3,12 @@ import { NewJotActionButton } from "./NewJotActionButton";
 
 export const Actions = () => {
   return (
-    <List>
+    <List
+      sx={{
+        // Disable vertical padding to align with page contents
+        py: 0,
+      }}
+    >
       <NewJotActionButton />
     </List>
   );

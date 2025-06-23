@@ -1,4 +1,4 @@
-import { useLocalJots } from "@/modules/jots/hooks";
+import { useSavedJotIds } from "@/modules/jots/hooks";
 import {
   Collapse,
   Icon,
@@ -9,12 +9,13 @@ import {
   Slide,
 } from "@mui/material";
 import { useState } from "react";
+import { JotListItemButton } from "./JotListItemButton";
 
 export const Recents = () => {
   // STATE
   const {
-    localJots: { recents },
-  } = useLocalJots();
+    savedJotIds: { recents },
+  } = useSavedJotIds();
 
   // Only open recents by default if there are recent jots
   const [open, setOpen] = useState(recents.length > 0);
@@ -41,11 +42,11 @@ export const Recents = () => {
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" dense>
-          {recents.map((jot, i) => (
+          {recents.map((recentJotId, i) => (
             <Slide in={open} direction="right" timeout={(i + 1) * 100}>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary={jot.title} />
-              </ListItemButton>
+              <Slide in={open} direction="right" timeout={(i + 1) * 100}>
+                <JotListItemButton jotId={recentJotId} />
+              </Slide>
             </Slide>
           ))}
         </List>

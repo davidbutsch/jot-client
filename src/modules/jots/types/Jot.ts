@@ -5,5 +5,7 @@ export type Jot = {
   isInviteCodeExpired?: boolean | undefined;
   title: string;
   content: string;
-  createdAt: string;
+  updatedAt: number;
+  timeSinceLastUpdated: string;
+  createdAt: number;
 };

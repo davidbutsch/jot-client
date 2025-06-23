@@ -1,2 +1,2 @@
 export * from "./Jot";
-export * from "./LocalJots";
+export * from "./LocalJotIds";

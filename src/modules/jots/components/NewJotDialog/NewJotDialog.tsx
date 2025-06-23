@@ -1,5 +1,5 @@
 import { createJot } from "@/modules/jots/api";
-import { useLocalJots } from "@/modules/jots/hooks";
+import { useSavedJotIds } from "@/modules/jots/hooks";
 import {
   Button,
   Dialog,
@@ -28,7 +28,7 @@ export const NewJotDialog = (props: NewJotDialogProps) => {
 
   // State
   const [title, setTitle] = useState("");
-  const { addLocalJot } = useLocalJots();
+  const { saveNewJotId } = useSavedJotIds();
 
   // Api
   const createJotMutation = useMutation({
@@ -49,7 +49,7 @@ export const NewJotDialog = (props: NewJotDialogProps) => {
     const newJot = await createJotMutation.mutateAsync({ title });
 
     // Save jot to local home
-    addLocalJot("home", newJot);
+    saveNewJotId("home", newJot.id);
 
     // Close dialog
     setOpen(false);
