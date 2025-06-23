@@ -13,7 +13,7 @@ export const JotCollection = (props: JotCollectionProps) => {
   return (
     <Grid container spacing={2} direction="row">
       {jotIds.map((jotId) => (
-        <Grid size={{ xs: 6, md: 4, lg: 3 }}>
+        <Grid key={jotId} size={{ xs: 6, md: 4, lg: 3 }}>
           <JotCollectionCard jotId={jotId} category={category} />
         </Grid>
       ))}
