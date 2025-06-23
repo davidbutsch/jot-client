@@ -28,7 +28,7 @@ export const NewJotDialog = (props: NewJotDialogProps) => {
 
   // State
   const [title, setTitle] = useState("");
-  const { saveNewJotId } = useSavedJotIds();
+  const { addJotId } = useSavedJotIds();
 
   // Api
   const createJotMutation = useMutation({
@@ -49,7 +49,7 @@ export const NewJotDialog = (props: NewJotDialogProps) => {
     const newJot = await createJotMutation.mutateAsync({ title });
 
     // Save jot to local home
-    saveNewJotId("home", newJot.id);
+    addJotId("home", newJot.id);
 
     // Close dialog
     setOpen(false);
