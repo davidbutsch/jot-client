@@ -1,8 +1,8 @@
-import { LocalJotIds } from "@/modules/jots";
+import { SavedJotIds } from "@/modules/jots";
 import useLocalStorage from "use-local-storage";
 
 export const useSavedJotIds = () => {
-  const [savedJotIds, setSavedJotIds] = useLocalStorage<LocalJotIds>(
+  const [savedJotIds, setSavedJotIds] = useLocalStorage<SavedJotIds>(
     "jots",
     {
       home: [],
@@ -17,7 +17,7 @@ export const useSavedJotIds = () => {
     }
   );
 
-  const saveNewJotId = (location: keyof LocalJotIds, jotId: string) => {
+  const addJotId = (location: keyof SavedJotIds, jotId: string) => {
     const updatedLocalJots = {
       ...savedJotIds,
       [location]: [...savedJotIds[location], jotId],
@@ -26,5 +26,14 @@ export const useSavedJotIds = () => {
     setSavedJotIds(updatedLocalJots);
   };
 
-  return { savedJotIds, saveNewJotId };
+  const deleteJotId = (location: keyof SavedJotIds, jotId: string) => {
+    const updatedLocalJots = {
+      ...savedJotIds,
+      [location]: [...savedJotIds[location].filter((id) => id !== jotId)],
+    };
+
+    setSavedJotIds(updatedLocalJots);
+  };
+
+  return { savedJotIds, addJotId, deleteJotId };
 };

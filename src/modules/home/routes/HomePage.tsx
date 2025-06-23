@@ -19,7 +19,7 @@ export const HomePage = () => {
       <Typography fontWeight="bold" variant="h4" my={4} height={40}>
         Home
       </Typography>
-      <JotCollection jotIds={home} />
+      <JotCollection jotIds={home} category="home" />
     </Container>
   );
 };

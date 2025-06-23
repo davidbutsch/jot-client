@@ -1,4 +1,5 @@
 import { getJot } from "@/modules/jots/api";
+import { SavedJotIds } from "@/modules/jots/types";
 import { Card, CardActionArea, CardContent, Stack } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -8,8 +9,10 @@ import { JotCollectionCardUpdatedAt } from "./JotCollectionCardUpdatedAt";
 
 export type JotCollectionCardProps = {
   jotId: string;
+  category: keyof SavedJotIds;
 };
 
+// TODO: automatically remove saved jots when api returns not found.
 export const JotCollectionCard = (props: JotCollectionCardProps) => {
   const { jotId } = props;
 
@@ -19,6 +22,7 @@ export const JotCollectionCard = (props: JotCollectionCardProps) => {
     queryKey: ["jots", jotId],
     queryFn: () => getJot(jotId),
   });
+
   const jot = getJotQuery.data;
 
   return (
