@@ -3,21 +3,18 @@ import { Fade, Skeleton, Typography } from "@mui/material";
 import { useMemo } from "react";
 
 export type JotCollectionCardPreviewTextProps = {
-  content?: string | undefined;
+  html?: string | undefined;
 };
 
 export const JotCollectionCardPreviewText = (
   props: JotCollectionCardPreviewTextProps
 ) => {
-  const { content } = props;
+  const { html } = props;
 
-  const previewText = useMemo(
-    () => htmlToPreviewText(content || ""),
-    [content]
-  );
+  const previewText = useMemo(() => htmlToPreviewText(html || ""), [html]);
 
   // Skeleton if content is undefined
-  if (!content)
+  if (!html)
     return (
       <Fade in={true} style={{ transitionDelay: "150ms" }}>
         <span>
@@ -27,7 +24,7 @@ export const JotCollectionCardPreviewText = (
       </Fade>
     );
 
-  if (content)
+  if (html)
     return (
       <Typography
         variant="body2"

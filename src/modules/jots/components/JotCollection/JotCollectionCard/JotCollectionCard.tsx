@@ -34,7 +34,7 @@ export const JotCollectionCard = (props: JotCollectionCardProps) => {
             height="120px"
           >
             <JotCollectionCardTitleProps title={jot?.title} />
-            <JotCollectionCardPreviewText content={jot?.content} />
+            <JotCollectionCardPreviewText html={jot?.html} />
             <JotCollectionCardUpdatedAt
               timeSinceLastUpdated={jot?.timeSinceLastUpdated}
             />

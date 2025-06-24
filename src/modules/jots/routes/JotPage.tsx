@@ -1,4 +1,5 @@
 import { Editor, getJot } from "@/modules/jots";
+import { Container } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
@@ -8,7 +9,7 @@ export const JotPage = () => {
   if (!jotId) return;
 
   const getJotQuery = useQuery({
-    queryKey: ["jot", jotId],
+    queryKey: ["jots", jotId],
     queryFn: () => getJot(jotId),
   });
 
@@ -17,5 +18,9 @@ export const JotPage = () => {
   // Replace with loader
   if (!jot) return;
 
-  return <Editor jot={jot} />;
+  return (
+    <Container>
+      <Editor jot={jot} />
+    </Container>
+  );
 };

@@ -4,6 +4,7 @@ const createEnv = () => {
   // schema validation with zod
   const EnvSchema = z.object({
     API_URL: z.string(),
+    WS_URL: z.string(),
   });
 
   // remove .env variable 'VITE_APP_' prefix

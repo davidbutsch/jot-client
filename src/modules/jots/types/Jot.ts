@@ -4,7 +4,8 @@ export type Jot = {
   inviteCode?: string | undefined;
   isInviteCodeExpired?: boolean | undefined;
   title: string;
-  content: string;
+  html?: string | undefined;
+  state: string;
   updatedAt: number;
   timeSinceLastUpdated: string;
   createdAt: number;

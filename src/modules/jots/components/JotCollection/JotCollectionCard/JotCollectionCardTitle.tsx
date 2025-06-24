@@ -19,7 +19,7 @@ export const JotCollectionCardTitleProps = (
 
   if (title)
     return (
-      <Typography fontWeight="bold" gutterBottom>
+      <Typography fontWeight="bold" gutterBottom noWrap>
         {title}
       </Typography>
     );
