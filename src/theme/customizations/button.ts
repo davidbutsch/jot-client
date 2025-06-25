@@ -53,7 +53,9 @@ export const buttonCustomizations: Components<Theme> = {
   // ICON BUTTON
   MuiIconButton: {
     styleOverrides: {
-      root: {},
+      root: {
+        borderRadius: 12,
+      },
     },
   },
 };
