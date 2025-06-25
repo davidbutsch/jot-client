@@ -1,7 +1,9 @@
 import { useCollaborativeEditor } from "@/modules/jots/hooks";
 import { Jot } from "@/modules/jots/types";
+import { Stack } from "@mui/material";
 import { EditorContent } from "@tiptap/react";
 import useLocalStorage from "use-local-storage";
+import { MenuBar } from "./MenuBar";
 import { TitleInput } from "./TitleInput";
 
 export type EditorProps = {
@@ -20,12 +22,23 @@ export const Editor = (props: EditorProps) => {
     user: { name, color },
   });
 
+  if (!editor) return;
+
   return (
-    <>
+    <Stack className="editor-container">
       <TitleInput jot={jot} />
-      <EditorContent editor={editor} />
-      {/* <FloatingMenu editor={editor}>Float</FloatingMenu>
-      <BubbleMenu editor={editor}>Bubble</BubbleMenu> */}
-    </>
+      <MenuBar editor={editor} />
+      <EditorContent
+        style={{
+          marginTop: 32,
+        }}
+        editor={editor}
+      />
+    </Stack>
   );
 };
+
+{
+  /* <FloatingMenu editor={editor}>Float</FloatingMenu>
+      <BubbleMenu editor={editor}>Bubble</BubbleMenu> */
+}
