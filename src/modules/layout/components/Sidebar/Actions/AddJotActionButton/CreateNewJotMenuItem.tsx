@@ -1,9 +1,8 @@
 import { NewJotDialog } from "@/modules/jots/components";
-import { Icon, ListItemIcon, ListItemText } from "@mui/material";
+import { Icon, ListItemIcon, ListItemText, MenuItem } from "@mui/material";
 import { useState } from "react";
-import { ActionButton } from "./ActionButton";
 
-export const NewJotActionButton = () => {
+export const CreateNewJotMenuItem = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleOpenDialog = () => setDialogOpen(true);
@@ -11,12 +10,12 @@ export const NewJotActionButton = () => {
   return (
     <>
       <NewJotDialog open={dialogOpen} setOpen={setDialogOpen} />
-      <ActionButton onClick={handleOpenDialog}>
+      <MenuItem onClick={handleOpenDialog}>
         <ListItemIcon>
-          <Icon className="material-symbols-outlined">add</Icon>
+          <Icon className="material-symbols-outlined">note_stack_add</Icon>
         </ListItemIcon>
-        <ListItemText>New Jot</ListItemText>
-      </ActionButton>
+        <ListItemText>Create new</ListItemText>
+      </MenuItem>
     </>
   );
 };

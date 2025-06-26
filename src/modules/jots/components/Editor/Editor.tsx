@@ -27,7 +27,7 @@ export const Editor = (props: EditorProps) => {
   return (
     <Stack className="editor-container">
       <TitleInput jot={jot} />
-      <MenuBar editor={editor} />
+      <MenuBar editor={editor} jot={jot} />
       <EditorContent
         style={{
           marginTop: 32,

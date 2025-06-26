@@ -1,5 +1,5 @@
 import { List } from "@mui/material";
-import { NewJotActionButton } from "./NewJotActionButton";
+import { AddJotActionButton } from "./AddJotActionButton";
 
 export const Actions = () => {
   return (
@@ -9,7 +9,7 @@ export const Actions = () => {
         py: 0,
       }}
     >
-      <NewJotActionButton />
+      <AddJotActionButton />
     </List>
   );
 };

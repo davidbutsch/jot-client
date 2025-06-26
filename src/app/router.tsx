@@ -2,6 +2,7 @@ import { useRoutes } from "react-router-dom";
 
 import { homeRoutes } from "@/modules/home";
 import { jotsRoutes } from "@/modules/jots";
+import { sharedRoutes } from "@/modules/shared";
 import { CssBaseline } from "@mui/material";
 import { Outlet, RouteObject } from "react-router-dom";
 
@@ -15,10 +16,14 @@ export const routes: RouteObject[] = [
     ),
     children: [
       {
+        children: jotsRoutes,
+      },
+      {
         children: homeRoutes,
       },
       {
-        children: jotsRoutes,
+        path: "/shared/",
+        children: sharedRoutes,
       },
     ],
   },

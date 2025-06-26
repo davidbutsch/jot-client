@@ -25,4 +25,11 @@ export const miscCustomizations: Components<Theme> = {
       },
     },
   },
+  MuiChip: {
+    styleOverrides: {
+      root: {
+        borderRadius: 12,
+      },
+    },
+  },
 };
