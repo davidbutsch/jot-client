@@ -20,7 +20,7 @@ export const JotPage = () => {
 
   // Insert new recent jot
   useEffect(() => {
-    addJotId("recents", jotId);
+    if (jotId) addJotId("recents", jotId, { maxLength: 5 });
   }, [jotId]);
 
   // Replace with loader

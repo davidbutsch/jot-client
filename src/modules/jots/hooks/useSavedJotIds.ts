@@ -17,7 +17,15 @@ export const useSavedJotIds = () => {
     }
   );
 
-  const addJotId = (location: keyof SavedJotIds, jotId: string) => {
+  type AddJotIdOptions = {
+    maxLength?: number;
+  };
+
+  const addJotId = (
+    location: keyof SavedJotIds,
+    jotId: string,
+    options?: AddJotIdOptions
+  ) => {
     const updatedLocalJots = {
       ...savedJotIds,
       [location]: [
@@ -25,6 +33,12 @@ export const useSavedJotIds = () => {
         ...savedJotIds[location].filter((id) => id !== jotId),
       ],
     };
+
+    if (
+      options?.maxLength &&
+      updatedLocalJots[location].length > options?.maxLength
+    )
+      updatedLocalJots[location].length = options.maxLength;
 
     setSavedJotIds(updatedLocalJots);
   };
