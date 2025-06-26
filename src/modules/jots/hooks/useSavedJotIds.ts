@@ -20,7 +20,10 @@ export const useSavedJotIds = () => {
   const addJotId = (location: keyof SavedJotIds, jotId: string) => {
     const updatedLocalJots = {
       ...savedJotIds,
-      [location]: [...savedJotIds[location], jotId],
+      [location]: [
+        jotId,
+        ...savedJotIds[location].filter((id) => id !== jotId),
+      ],
     };
 
     setSavedJotIds(updatedLocalJots);

@@ -18,7 +18,7 @@ export const Recents = () => {
   } = useSavedJotIds();
 
   // Only open recents by default if there are recent jots
-  const [open, setOpen] = useState(recents.length > 0);
+  const [open, setOpen] = useState(true);
 
   // METHODS
   const handleToggleOpen = () => {
@@ -43,10 +43,15 @@ export const Recents = () => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" dense>
           {recents.map((recentJotId, i) => (
-            <Slide in={open} direction="right" timeout={(i + 1) * 100}>
-              <Slide in={open} direction="right" timeout={(i + 1) * 100}>
-                <JotListItemButton jotId={recentJotId} />
-              </Slide>
+            <Slide
+              key={recentJotId}
+              in={open}
+              direction="right"
+              timeout={(i + 1) * 100}
+            >
+              <div>
+                <JotListItemButton jotId={recentJotId} category={"recents"} />
+              </div>
             </Slide>
           ))}
         </List>

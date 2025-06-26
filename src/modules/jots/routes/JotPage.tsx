@@ -1,6 +1,7 @@
-import { Editor, getJot } from "@/modules/jots";
+import { Editor, getJot, useSavedJotIds } from "@/modules/jots";
 import { Container } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export const JotPage = () => {
@@ -14,6 +15,13 @@ export const JotPage = () => {
   });
 
   const jot = getJotQuery.data;
+
+  const { addJotId } = useSavedJotIds();
+
+  // Insert new recent jot
+  useEffect(() => {
+    addJotId("recents", jotId);
+  }, [jotId]);
 
   // Replace with loader
   if (!jot) return;

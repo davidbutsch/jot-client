@@ -7,7 +7,7 @@ import CollaborationCursor from "@tiptap/extension-collaboration-cursor";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import debounce from "lodash.debounce";
-import { useMemo, useRef } from "react";
+import { useMemo } from "react";
 import * as Y from "yjs";
 
 import { Blockquote } from "@tiptap/extension-blockquote";
@@ -30,19 +30,20 @@ type useCollaborativeEditorOptions = {
   user: { name: string; color: string };
 };
 
+// TODO: Fix issue with editor not refreshing data on jot state change
 export function useCollaborativeEditor({
   jot,
   user,
 }: useCollaborativeEditorOptions) {
-  const ydocRef = useRef(new Y.Doc());
+  const ydoc = useMemo(() => new Y.Doc(), [jot]);
   const provider = useMemo(
     () =>
       new HocuspocusProvider({
         url: env.WS_URL,
         name: jot.id,
-        document: ydocRef.current,
+        document: ydoc,
       }),
-    []
+    [jot]
   );
 
   const handleDebouncedUpdate = useMemo(
@@ -51,7 +52,7 @@ export function useCollaborativeEditor({
         const html = editor.getHTML();
         updateJot(jot.id, { html });
       }, 1000),
-    []
+    [jot]
   );
 
   const editor = useEditor({
@@ -88,7 +89,7 @@ export function useCollaborativeEditor({
         protocols: ["http", "https"],
       }),
       Collaboration.configure({
-        document: ydocRef.current,
+        document: ydoc,
       }),
       CollaborationCursor.configure({
         provider: provider,
