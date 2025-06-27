@@ -6,6 +6,7 @@ export const PublishButton = () => {
       variant="contained"
       startIcon={<Icon className="material-symbols-outlined">web</Icon>}
       sx={{
+        ml: 1,
         flexGrow: 1,
       }}
     >

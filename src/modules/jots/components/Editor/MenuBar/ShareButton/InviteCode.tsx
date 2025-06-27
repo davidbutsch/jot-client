@@ -104,7 +104,7 @@ export const InviteCode = (props: InviteCodeProps) => {
 
             width: 56,
 
-            bgcolor: "#00000012",
+            bgcolor: "rgba(0, 0, 0, .06)",
 
             display: "flex",
             justifyContent: "center",

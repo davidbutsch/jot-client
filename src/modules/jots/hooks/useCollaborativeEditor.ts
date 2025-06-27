@@ -1,5 +1,6 @@
 import { env } from "@/common";
 import { updateJot } from "@/modules/jots/api";
+import { handleUpload } from "@/modules/jots/helpers";
 import { Jot } from "@/modules/jots/types";
 import { HocuspocusProvider } from "@hocuspocus/provider";
 import Collaboration from "@tiptap/extension-collaboration";
@@ -11,6 +12,7 @@ import { useMemo } from "react";
 import * as Y from "yjs";
 
 import { Blockquote } from "@tiptap/extension-blockquote";
+import { FileHandler } from "@tiptap/extension-file-handler";
 import { Heading } from "@tiptap/extension-heading";
 import { Highlight } from "@tiptap/extension-highlight";
 import { Link } from "@tiptap/extension-link";
@@ -19,7 +21,9 @@ import { TaskItem } from "@tiptap/extension-task-item";
 import { TaskList } from "@tiptap/extension-task-list";
 import { TextAlign } from "@tiptap/extension-text-align";
 import { Underline } from "@tiptap/extension-underline";
+import { ResizableImage } from "tiptap-extension-resizable-image";
 
+import { FileNode } from "@/modules/jots/extensions";
 import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 
@@ -31,10 +35,9 @@ type useCollaborativeEditorOptions = {
 };
 
 // TODO: Fix issue with editor not refreshing data on jot state change
-export function useCollaborativeEditor({
-  jot,
-  user,
-}: useCollaborativeEditorOptions) {
+export function useCollaborativeEditor(props: useCollaborativeEditorOptions) {
+  const { jot, user } = props;
+
   const ydoc = useMemo(() => new Y.Doc(), [jot]);
   const provider = useMemo(
     () =>
@@ -88,6 +91,16 @@ export function useCollaborativeEditor({
         defaultProtocol: "https",
         protocols: ["http", "https"],
       }),
+      ResizableImage.configure({
+        minWidth: 32,
+        minHeight: 32,
+        maxWidth: 622,
+      }),
+      FileHandler.configure({
+        onPaste: handleUpload,
+        onDrop: handleUpload,
+      }),
+      FileNode,
       Collaboration.configure({
         document: ydoc,
       }),

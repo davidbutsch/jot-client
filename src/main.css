@@ -184,3 +184,16 @@ pre .hljs-strong {
 a {
   cursor: pointer;
 }
+
+.tiptap img {
+  border-radius: 12px;
+  width: 100%;
+}
+
+.image-component {
+  border-radius: 12px;
+  --box-color: black;
+}
+.image-component .image-resizer {
+  border-radius: 12px;
+}

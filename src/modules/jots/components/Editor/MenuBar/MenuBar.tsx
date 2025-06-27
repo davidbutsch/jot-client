@@ -20,7 +20,7 @@ export const MenuBar = (props: MenuBarProps) => {
     <Stack direction="row" gap={1}>
       <StylingButtons editor={editor} />
       <PublishButton />
-      <UploadButton />
+      <UploadButton editor={editor} />
       <ShareButton jot={jot} />
     </Stack>
   );

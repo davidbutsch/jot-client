@@ -30,7 +30,9 @@ export const Editor = (props: EditorProps) => {
       <MenuBar editor={editor} jot={jot} />
       <EditorContent
         style={{
-          marginTop: 32,
+          paddingTop: 24,
+          paddingBottom: 24,
+          maxWidth: 622,
         }}
         editor={editor}
       />
